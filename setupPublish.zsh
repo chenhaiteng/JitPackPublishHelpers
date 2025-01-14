@@ -2,6 +2,8 @@
 
 WORKDIR=$PWD
 
+TOOLDIR=${0:A:h}
+
 LIBLIST=($(find $WORKDIR -mindepth 1 -maxdepth 1 -type d \( ! -iname ".*" \) \( ! -iname "app" \) \( ! -iname "gradle" \)))
 
 LIBCOUNT=${#LIBLIST[@]}
@@ -131,8 +133,8 @@ publishing { \\
 
 cd ..
 
-./setupDemoApp.zsh $BASE
+$TOOLDIR/setupDemoApp.zsh $BASE
 
-./updateSDK.zsh $BASE
+$TOOLDIR/updateSDK.zsh $BASE
 
-./updateSDK.zsh app
+$TOOLDIR/updateSDK.zsh app
