@@ -133,8 +133,17 @@ publishing { \\
 
 cd ..
 
-$TOOLDIR/setupDemoApp.zsh $BASE
+if [[ ! -f $TOOLDIR/setupDemoApp.zsh ]]; then
+    printf "the script setupDemoApp.zsh is not exist. Ignore it.\n"
+else
+    $TOOLDIR/setupDemoApp.zsh $BASE
+fi
 
-$TOOLDIR/updateSDK.zsh $BASE
+if [[ ! -f $TOOLDIR/updateSDK.zsh ]]; then
+    printf "the script updateSDK.zsh is not exist. Ignore it.\n"
+else
+    $TOOLDIR/updateSDK.zsh $BASE
+    $TOOLDIR/updateSDK.zsh app
+fi
 
-$TOOLDIR/updateSDK.zsh app
+printf "Set up finished. %s is publishable now." $BASE
